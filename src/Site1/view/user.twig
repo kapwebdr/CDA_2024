@@ -1,0 +1,14 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <a href="/users" class="btn-green">Listes des utilisateurs</a>
+
+    <div class="card-container">
+        {% if user %}    
+            {% include 'components/card.twig' with {'card_title':"#{user.firstname} #{user.lastname}",'card_text':user.description} %}
+        {% else %}
+            {% include 'components/card.twig' with {'card_link':'/users','card_title':"Aucun utilisateur trouvé",'card_text':""} %}
+        {% endif %}
+    </div>
+
+{% endblock %}

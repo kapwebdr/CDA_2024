@@ -1,0 +1,15 @@
+{% if card_link %}
+<a href="{{ card_link }}">
+{% endif %}
+    <div class="card">    
+        <h2>{{ card_title }}</h2>
+        <p >{{ card_text }}</p>
+        {% if button_basket == true %}
+            <button class="btn-green" type="submit">
+                Ajouter au panier
+            </button>
+        {% endif %}
+    </div>
+{% if card_link %}
+</a>
+{% endif %}

@@ -1,0 +1,10 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="card-container">
+    {% for item in menus %}
+        {% include 'components/card.twig' with {'card_background':'white','card_title':item.name,'card_text':item.url} %}
+        {% include 'components/card.twig' with {'card_background':'gray','card_title':"Bonjour, #{item.name} .",'card_text':item.url,'button_basket':true} %}
+    {% endfor %}
+    </div>
+{% endblock %}

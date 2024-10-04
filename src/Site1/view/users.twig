@@ -1,0 +1,9 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="card-container">
+    {% for user in users %}
+        {% include 'components/card.twig' with {'card_link':"/user/#{user.id}",'card_title':"#{user.firstname} #{user.lastname}",'card_text':user.description} %}
+    {% endfor %}
+    </div>
+{% endblock %}

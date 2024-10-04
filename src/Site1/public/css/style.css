@@ -1,0 +1,201 @@
+/* Style global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: white;
+    color: #333;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    float: left;
+    margin-right: 20px;
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+/* Sidebar */
+.content {
+    display: flex;
+    flex: 1;
+    margin-top: 60px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    color: #444;
+    padding: 20px;
+    position: fixed;
+    top: 60px; /* Collé sous le header */
+    height: calc(100% - 60px);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+.sidebar.active {
+    transform: translateX(-100%);
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 250px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: margin-left 0.3s;
+}
+.main-content.no-sidebar
+{
+    margin-left:0;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espace entre les cartes */
+    max-width: 1200px; /* Limite maximale de la largeur du container */
+    /* width: 100%; */
+    align-items: center;
+}
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 768px) {
+    .card-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Répartir l'espace entre les cartes */
+    }
+}
+/* Style de la card */
+.card {
+    width: 100%;
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+a .card{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-container a {
+    display: flex;
+    justify-content: center;
+    /* width: 100%; */
+}
+
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.card p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        height: 100%;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+.btn-green
+{
+    padding: 10px 20px; 
+    background-color: #4CAF50;
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease;
+}
