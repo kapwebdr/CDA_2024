@@ -6,17 +6,16 @@ $Main = new \Controller\Main();
 
 class Main
 {
-    protected $twig;
-    protected $menus;
+    protected $View;
     
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('../view/');
-        $this->twig = new \Twig\Environment($loader, [
-        //    'cache' => '../view/cache/',
-        ]);
+        $this->View = new \Controller\View('twig');
 
         $menu = new \Model\Menu();
-        $this->menus = $menu->getMenu();
+        $menus = $menu->getMenu();
+
+        $this->View->menus      = $menus;
+        $this->View->copyright  = COPYRIGHT;
     }
 }

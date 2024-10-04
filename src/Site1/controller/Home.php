@@ -10,9 +10,10 @@ class Home extends Main
 {
     function index($vars=[])
     {
-        echo $this->twig->render('index.twig', [
-            'title'=>'Page d\'accueil',
-            'h1_title'=>'Page de découverte du site web',
-            'menus'=>$this->menus]);
+        $this->View->title      = 'Page d\'accueil';
+        $this->View->h1_title   = 'Page de découverte du site web';
+        
+
+        $this->View->Display('index');
     }
 }

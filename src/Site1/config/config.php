@@ -11,5 +11,7 @@ define('DB_NAME','cda_db');
 define('DB_USER','cda_user');
 define('DB_PASSWORD','cda_pwd');
 
+define('COPYRIGHT','Kapweb');
+
 require_once DIR_BASE.'vendor/autoload.php';
 require_once DIR_CONFIG.'routes.php';
