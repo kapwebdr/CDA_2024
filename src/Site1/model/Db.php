@@ -12,10 +12,19 @@ class Db
                 self::$pdo = new \PDO("mysql:host=".DB_HOSTNAME.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
                 self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-                //echo "Connexion réussie à la base de données !";
             }
         } catch (\PDOException $e) {
-            //echo "Erreur de connexion : " . $e->getMessage();
+            \Controller\Error::PdoException($e);
+        }
+    }
+    public function query($sql,$params=[])
+    {
+        try {
+            $prepare = self::$pdo->prepare($sql);
+            $prepare->execute($params);
+            return $prepare;
+        } catch (\PDOException $e) {
+            \Controller\Error::PdoException($e);
         }
     }
 }

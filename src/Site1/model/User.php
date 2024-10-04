@@ -5,11 +5,7 @@ class User extends Db
 {
     function getUsers()
     {
-        $sql = 'Select * from user';
-        $prepare = self::$pdo->prepare($sql);
-        $prepare->execute();
-
-        return $prepare->fetchAll();
+        return $this->query('Select * from user')->fetchAll();
     }
 
     function initUsers()
@@ -35,14 +31,6 @@ class User extends Db
 
     function getUser($id)
     {
-        $sql = 'Select * from user where id=:id';
-        $prepare = self::$pdo->prepare($sql);
-        $prepare->execute(
-            [
-                ':id'=>$id
-            ]
-        );
-
-        return $prepare->fetch();
+        return $this->query('Select * from user where id=:id',[':id'=>$id])->fetch();
     }
 }

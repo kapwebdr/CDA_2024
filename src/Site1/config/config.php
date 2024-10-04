@@ -14,4 +14,10 @@ define('DB_PASSWORD','cda_pwd');
 define('COPYRIGHT','Kapweb');
 
 require_once DIR_BASE.'vendor/autoload.php';
+
+ini_set( "display_errors" , "off" );
+error_reporting( E_ALL );
+set_error_handler(['\Controller\Error','PhpError'],E_ALL);
+register_shutdown_function(['\Controller\Error','PhpFatalError']);
+
 require_once DIR_CONFIG.'routes.php';

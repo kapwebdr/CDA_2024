@@ -1,8 +1,5 @@
 <?php
 namespace Controller;
-/*
-$Main = new \Controller\Main();
-*/
 
 class Main
 {
