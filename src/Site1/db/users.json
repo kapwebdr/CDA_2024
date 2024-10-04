@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "lastname": "Doe",
+        "firstname": "John",
+        "description": "Développeur web expérimenté spécialisé en PHP et JavaScript."
+    },
+    {
+        "id": 2,
+        "lastname": "Smith",
+        "firstname": "Jane",
+        "description": "Graphiste passionnée par le design UI/UX avec 10 ans d'expérience."
+    },
+    {
+        "id": 3,
+        "lastname": "Johnson",
+        "firstname": "Emily",
+        "description": "Consultante en marketing digital et experte en SEO."
+    },
+    {
+        "id": 4,
+        "lastname": "Brown",
+        "firstname": "Michael",
+        "description": "Ingénieur en logiciels embarqués avec une expertise dans les systèmes embarqués IoT."
+    }
+]
