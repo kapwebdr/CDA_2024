@@ -7,3 +7,5 @@ Thumbs.db
 dump/*
 db/*
 NodeJs/
+package-lock.json
+src/Site2/public/css/style.css.map
