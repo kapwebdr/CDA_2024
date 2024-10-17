@@ -23,6 +23,17 @@ services:
     volumes:
       - ./db/:/var/lib/mysql/
       #- ./dump/:/docker-entrypoint-initdb.d/
+  db2:
+    image: mariadb:latest
+    container_name: cda_db2
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_pwd
+      - MARIADB_USER=game_user
+      - MARIADB_PASSWORD=game_pwd
+      - MARIADB_DATABASE=game_horizon
+    volumes:
+      #- ./db/:/var/lib/mysql/
+      - ./dump/:/docker-entrypoint-initdb.d/
   php:
     build:
       context: ./php/
@@ -35,10 +46,15 @@ services:
     command: sh -c "cd Site1 && composer install --ignore-platform-reqs && php-fpm"
     links:
       - db 
+      - db2
+
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: cda_phpmyadmin
     ports:
       - 9002:80
+    environment:
+      PMA_HOSTS: db,db2
     links:
       - db
+      - db2

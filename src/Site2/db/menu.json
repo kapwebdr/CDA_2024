@@ -1,0 +1,10 @@
+[
+    {
+      "name": "Accueil",
+      "url": "/"
+    },
+    {
+      "name": "Catalogue",
+      "url": "/games"
+    }
+]

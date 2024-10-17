@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h2>Votre panier</h2>
+    {% if cart|length > 0 %}
+        <div class="cart-items">
+            {% for item in cart %}
+                <div class="cart-item game-card">
+                    <img src="{{ item.game.image_url }}" alt="{{ item.game.title }}" class="game-image">
+                    <div class="game-card-content">
+                        <h3>{{ item.game.title }}</h3>
+                        <p class="price">{{ item.game.price }} €</p>
+                        <p>Quantité : {{ item.quantity }}</p>
+                        <form action="/cart/remove" method="POST" class="remove-form">
+                            <input type="hidden" name="game_id" value="{{ item.game.id }}">
+                            <button type="submit" class="btn-remove">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="cart-total">
+            <p>Total : {{ cart|reduce((total, item) => total + item.game.price * item.quantity, 0)|number_format(2, ',', ' ') }} €</p>
+        </div>
+        <div class="cart-actions">
+            <form action="/cart/clear" method="POST">
+                <button type="submit" class="btn-clear">Vider le panier</button>
+            </form>
+            <a href="/cart/checkout" class="btn-green">Valider la commande</a>
+        </div>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+    <a href="/games" class="btn-blue">Continuer vos achats</a>
+{% endblock %}

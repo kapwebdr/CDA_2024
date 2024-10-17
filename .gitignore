@@ -1,5 +1,9 @@
 vendor/
-composer.lock
+/node_modules/
+.env
+*.log
+.DS_Store
+Thumbs.db
 dump/*
 db/*
 NodeJs/

@@ -1,0 +1,14 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h2>Validation de la commande</h2>
+    {% if message %}
+        <p class="success-message">{{ message }}</p>
+    {% else %}
+        <form action="/cart/checkout" method="POST">
+            <!-- Ajoutez ici les champs nécessaires pour la validation de la commande -->
+            <button type="submit" class="btn-green">Confirmer la commande</button>
+        </form>
+    {% endif %}
+    <a href="/cart" class="btn-blue">Retour au panier</a>
+{% endblock %}

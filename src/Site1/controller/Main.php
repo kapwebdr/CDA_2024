@@ -3,16 +3,21 @@ namespace Controller;
 
 class Main
 {
-    protected $View;
-    
-    public function __construct()
+    static $View;
+
+    static function Init()
     {
-        $this->View = new \Controller\View('twig');
+        self::$View = new \Controller\View('twig');
 
         $menu = new \Model\Menu();
         $menus = $menu->getMenu();
 
-        $this->View->menus      = $menus;
-        $this->View->copyright  = COPYRIGHT;
+        self::$View->menus      = $menus;
+        self::$View->copyright  = COPYRIGHT;
+    }
+    
+    public function __construct()
+    {
+        self::Init();
     }
 }

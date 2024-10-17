@@ -12,5 +12,6 @@ $routes =
     '/user/{id}'=>[
         'method'=>'GET',
         'controller'=>['Controller\User','getUser'],
-    ]
+    ],
+    
 ];

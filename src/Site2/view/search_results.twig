@@ -1,0 +1,19 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h2>Résultats de recherche pour "{{ query }}"</h2>
+    <div class="game-grid">
+    {% for game in games %}
+        {% include 'components/card.twig' with {
+            'card_link': "/game/#{game.id}",
+            'card_title': game.title,
+            'card_text': game.description,
+            'card_image': game.image_url,
+            'card_price': game.price,
+            'button_basket': true
+        } %}
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endfor %}
+    </div>
+{% endblock %}

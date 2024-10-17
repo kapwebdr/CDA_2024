@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "The Legend of Zelda: Breath of the Wild",
+        "description": "Un jeu d'aventure en monde ouvert acclamé par la critique.",
+        "price": 59.99,
+        "image_url": "/images/zelda_botw.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Red Dead Redemption 2",
+        "description": "Une épopée western dans un monde ouvert immersif.",
+        "price": 49.99,
+        "image_url": "/images/rdr2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Cyberpunk 2077",
+        "description": "Un RPG futuriste dans un monde dystopique.",
+        "price": 39.99,
+        "image_url": "/images/cyberpunk2077.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Animal Crossing: New Horizons",
+        "description": "Un jeu de simulation de vie relaxant sur une île déserte.",
+        "price": 54.99,
+        "image_url": "/images/animal_crossing.jpg"
+    }
+]

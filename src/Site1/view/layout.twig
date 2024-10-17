@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    </head>
+</head>
 <body>
 <header>
     <span class="menu-icon" onclick="toggleSidebar()">&#9776;</span>
     <h1>{{h1_title}}</h1>
 </header>
     <div class="content">
+        {% block sidebar %}
         <nav class="sidebar" id="sidebar">
             <h2>Menu</h2>
             <ul>
@@ -22,8 +23,9 @@
                 {% endfor %}
             </ul>
         </nav>
+        {% endblock %}
 
-        <main class="main-content">
+        <main class="main-content {% if block('sidebar') is empty %}full-width{% endif %}">
             {% block content %} {% endblock %}
         </main>
     </div>
@@ -37,12 +39,14 @@
         var sidebar = document.getElementById('sidebar');
         var mainContent = document.querySelector('.main-content');
 
-        sidebar.classList.toggle('active');
-        
-        if (sidebar.classList.contains('active')) {
-            mainContent.classList.add('no-sidebar');
-        } else {
-            mainContent.classList.remove('no-sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('active');
+            
+            if (sidebar.classList.contains('active')) {
+                mainContent.classList.add('no-sidebar');
+            } else {
+                mainContent.classList.remove('no-sidebar');
+            }
         }
     }
 </script>

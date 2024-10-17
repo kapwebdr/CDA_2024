@@ -8,11 +8,11 @@ class User extends Main
         $users = new \Model\User();
         $_users = $users->getUsers();
         
-        $this->View->title      = 'Liste des utilisateurs';
-        $this->View->h1_title   = 'Liste des utilisateurs';
-        $this->View->users      = $_users;
+        Main::$View->title      = 'Liste des utilisateurs';
+        Main::$View->h1_title   = 'Liste des utilisateurs';
+        Main::$View->users      = $_users;
         
-        $this->View->Display('users');
+        Main::$View->Display('users');
     }
     
     public function getUser($vars=[])
@@ -26,15 +26,15 @@ class User extends Main
         }
         if(!is_null($user) && isset($user['id']))
         {
-            $this->View->title = 'Utilisateur '.$user['firstname'];
-            $this->View->h1_title = $user['firstname'].' '.$user['lastname'];
+            Main::$View->title = 'Utilisateur '.$user['firstname'];
+            Main::$View->h1_title = $user['firstname'].' '.$user['lastname'];
         }
         else {
-            $this->View->title = 'Aucun utilisateur trouvé';
-            $this->View->h1_title = 'Aucun utilisateur trouvé';
+            Main::$View->title = 'Aucun utilisateur trouvé';
+            Main::$View->h1_title = 'Aucun utilisateur trouvé';
         }
 
-        $this->View->user = $user;
-        $this->View->Display('user');
+        Main::$View->user = $user;
+        Main::$View->Display('user');
     }
 }

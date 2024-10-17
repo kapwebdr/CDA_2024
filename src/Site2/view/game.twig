@@ -1,0 +1,28 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="game-detail">
+        <a href="/games" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au catalogue</a>
+
+        {% if game %}    
+            <div class="game-card detail-card">
+                <div class="game-image-container">
+                    <img src="{{ game.image_url }}" alt="{{ game.title }}" class="game-image">
+                </div>
+                <div class="game-info">
+                    <h2>{{ game.title }}</h2>
+                    <p class="game-description">{{ game.description }}</p>
+                    <p class="price">{{ game.price }} €</p>
+                    <button class="btn-green add-to-cart" data-game-id="{{ game.id }}">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                    </button>
+                </div>
+            </div>
+        {% else %}
+            <div class="error-message">
+                <p>Jeu non trouvé</p>
+                <a href="/games" class="btn-green">Voir tous les jeux</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
