@@ -1,18 +1,59 @@
+@use "sass:color";
+
+// Couleurs
 $primary-color: #ff7700;
+$primary-light: color.scale($primary-color, $lightness: 20%);
+$primary-dark: color.scale($primary-color, $lightness: -20%);
 $secondary-color: #2a2a2a;
 $text-color: #ffffff;
 $background-color: #121212;
 $card-background: #1e1e1e;
-$hover-color: #ff8c1a;
+$hover-color: color.adjust($primary-color, $lightness: 10%, $saturation: 10%);
 $error-color: #ff4444;
 $success-color: #00C851;
 
+// Typographie
 $font-family: 'Roboto', sans-serif;
 $font-size-base: 16px;
-$line-height-base: 1.5;
+$font-size-small: 0.875rem;
+$font-size-large: 1.25rem;
+$line-height-base: 1.6;
 
-$spacing-small: 0.5rem;
-$spacing-medium: 1rem;
-$spacing-large: 2rem;
+// Espacement
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
 
-$border-radius: 5px;
+// Bordures
+$border-radius-sm: 3px;
+$border-radius-md: 5px;
+$border-radius-lg: 10px;
+$border-radius-full: 9999px;
+
+// Layout
+$header-height: 60px;
+$sidebar-width: 250px;
+$container-max-width: 1200px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-function: ease;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Boutons
+$btn-padding-y: $spacing-xs;
+$btn-padding-x: $spacing-md;
+$btn-font-size: $font-size-base;
+$btn-border-radius: $border-radius-full;

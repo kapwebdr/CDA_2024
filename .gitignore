@@ -1,5 +1,5 @@
 vendor/
-/node_modules/
+node_modules/
 .env
 *.log
 .DS_Store
@@ -8,4 +8,5 @@ dump/*
 db/*
 NodeJs/
 package-lock.json
+composer.lock
 src/Site2/public/css/style.css.map

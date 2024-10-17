@@ -13,5 +13,7 @@ class Home extends Main
         Main::$View->title      = 'Page d\'accueil';
         Main::$View->h1_title   = 'Page de découverte du site web';
         Main::$View->Display('index');
+
+        Main::$Logger->warning('Index visualisé');
     }
 }

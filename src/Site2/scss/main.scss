@@ -1,21 +1,6 @@
-// Abstracts
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+@use 'abstracts' as *;
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'pages';
 
-// Base
-@import 'base/reset';
-@import 'base/typography';
-
-// Components
-@import 'components/buttons';
-@import 'components/cards';
-@import 'components/forms';
-
-// Layout
-@import 'components/header';
-@import 'components/footer';
-@import 'components/navigation';
-
-// Pages
-@import 'pages/home';
-@import 'pages/game';

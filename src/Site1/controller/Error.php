@@ -3,11 +3,6 @@ namespace Controller;
 use \Controller\Main;
 
 /*
-
-    - Monolog       
-    - PhpMailer
-
-    -> Intégrer Monolog ainsi que PhpMailer dans le Main en static
     -> Dans config.php ajouter des éléments de configuration (phpMailer)
     -> Utiliser dans Error avec sendMailError() et sendLogError() 
 */
@@ -39,6 +34,24 @@ Class Error
     {
         http_response_code($code);
         self::displayError($code);
+        self::sendLogError($code,'Erreur Http.');
+    }
+
+    static function UserError($code,$message)
+    {
+        self::sendLogError($code,$message);
+    }
+
+    static function sendMailError($code,$message='')
+    {
+        Main::Init();
+        Main::sendMail('debug@kapweb.com','Erreur '.$code,$code.'-->'.$message);
+    }
+
+    static function sendLogError($code,$message='')
+    {
+        Main::Init();
+        Main::$Logger->error($code.':'.$message);
     }
 
     static function displayError($code,$message='')
@@ -49,8 +62,4 @@ Class Error
         Main::$View->Display('error');
     }
 
-    static function UserError()
-    {
-        
-    }
 }

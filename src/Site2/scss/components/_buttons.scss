@@ -1,0 +1,48 @@
+@use '../abstracts' as *;
+@use "sass:color";
+.btn {
+  @include button-style($primary-color);
+}
+
+.btn-secondary {
+  @include button-style($secondary-color);
+}
+
+.btn-success {
+  @include button-style($success-color);
+}
+
+.btn-error {
+  @include button-style($error-color);
+}
+
+.btn-large {
+  font-size: $font-size-large;
+  padding: $spacing-sm $spacing-lg;
+}
+
+.btn-green {
+  @include button-style($success-color);
+}
+
+.btn-blue {
+  @include button-style($primary-color);
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+  transition: color $transition-speed $transition-function;
+
+  &:hover {
+    color: color.scale($primary-color, $lightness: 20%);
+  }
+}
+
+@media (max-width: 768px) {
+  .btn, .btn-green, .btn-blue {
+    width: 100%;
+    margin-bottom: $spacing-xs;
+  }
+}

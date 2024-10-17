@@ -1,5 +1,6 @@
 <?php
 namespace Controller;
+use \Controller\Error;
 
 class User extends Main
 {
@@ -32,6 +33,7 @@ class User extends Main
         else {
             Main::$View->title = 'Aucun utilisateur trouvé';
             Main::$View->h1_title = 'Aucun utilisateur trouvé';
+            Error::UserError(100,'Aucun utilisateur trouvé');
         }
 
         Main::$View->user = $user;

@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+@use "sass:color";
+
+.form-container {
+  @include card-style;
+  max-width: 400px;
+  margin: $spacing-xl auto;
+
+  input {
+    width: 100%;
+    padding: $spacing-sm;
+    margin-bottom: $spacing-md;
+    border: 1px solid $secondary-color;
+    border-radius: $border-radius-sm;
+    
+    background-color: color.adjust($background-color, $lightness: 5%);
+    color: $text-color;
+  }
+
+  button {
+    @include button-style($primary-color);
+    width: 100%;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  margin-bottom: $spacing-md;
+}

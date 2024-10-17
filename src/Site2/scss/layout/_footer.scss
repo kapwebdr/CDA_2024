@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+
+footer {
+  background-color: $secondary-color;
+  color: $text-color;
+  padding: $spacing-xl 0;
+  margin-top: $spacing-xxl;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-section {
+    flex: 1;
+    margin-right: $spacing-xl;
+    margin-bottom: $spacing-lg;
+
+    h3 {
+      margin-bottom: $spacing-md;
+    }
+
+    ul li {
+      margin-bottom: $spacing-xs;
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: $spacing-xl;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba($text-color, 0.1);
+  }
+}
