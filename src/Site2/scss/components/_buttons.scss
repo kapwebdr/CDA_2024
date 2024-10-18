@@ -1,4 +1,5 @@
 @use '../abstracts' as *;
+@use 'sass:map';
 @use "sass:color";
 .btn {
   @include button-style($primary-color);
@@ -18,20 +19,20 @@
 
 .btn-large {
   font-size: $font-size-large;
-  padding: $spacing-sm $spacing-lg;
+  padding: map.get($spacing, sm) map.get($spacing, lg);
 }
 
 .btn-green {
-  @include button-style($success-color);
+  @extend .btn-success;
 }
 
 .btn-blue {
-  @include button-style($primary-color);
+  @extend .btn;
 }
 
 .btn-back {
   display: inline-block;
-  margin-bottom: $spacing-md;
+  margin-bottom: map.get($spacing, md);
   color: $primary-color;
   transition: color $transition-speed $transition-function;
 
@@ -40,9 +41,50 @@
   }
 }
 
-@media (max-width: 768px) {
+.btn-filter, .btn-page {
+  @include button-style($secondary-color);
+  display: inline-block;
+  padding: map.get($spacing, xs) map.get($spacing, sm);
+  margin: map.get($spacing, xxs);
+
+  &.active, &:hover {
+    background-color: $primary-color;
+  }
+}
+
+.btn-clear, .btn-remove {
+  @include button-style($error-color);
+}
+
+.btn-remove {
+  padding: map.get($spacing, xs) map.get($spacing, sm);
+  font-size: $font-size-small;
+}
+
+.btn-login, .btn-signup {
+  padding: map.get($spacing, xs) map.get($spacing, sm);
+  border-radius: map.get($border-radius, full);
+  transition: all $transition-speed $transition-function;
+}
+
+.btn-login {
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $text-color;
+  }
+}
+
+.btn-signup {
+  @include button-style($primary-color);
+}
+
+@include responsive(md) {
   .btn, .btn-green, .btn-blue {
     width: 100%;
-    margin-bottom: $spacing-xs;
+    margin-bottom: map.get($spacing, xs);
   }
 }

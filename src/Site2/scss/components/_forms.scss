@@ -1,18 +1,17 @@
 @use '../abstracts' as *;
 @use "sass:color";
-
+@use 'sass:map';
 .form-container {
   @include card-style;
   max-width: 400px;
-  margin: $spacing-xl auto;
+  margin: map.get($spacing, xl) auto; // Utilise map.get pour accéder à $spacing
 
   input {
     width: 100%;
-    padding: $spacing-sm;
-    margin-bottom: $spacing-md;
+    padding: map.get($spacing, sm);
+    margin-bottom: map.get($spacing, md);
     border: 1px solid $secondary-color;
-    border-radius: $border-radius-sm;
-    
+    border-radius: map.get($border-radius, sm);
     background-color: color.adjust($background-color, $lightness: 5%);
     color: $text-color;
   }
@@ -23,7 +22,7 @@
   }
 }
 
-.error-message {
+.error-message, .error {
   color: $error-color;
-  margin-bottom: $spacing-md;
+  margin-bottom: map.get($spacing, md);
 }

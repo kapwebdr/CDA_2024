@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 define('DIR_BASE',__DIR__.'/../');
 define('DIR_CONFIG',DIR_BASE.'config/');
 define('DIR_CONTROLLER',DIR_BASE.'controller/');
@@ -16,6 +14,7 @@ define('DB_PASSWORD','game_pwd');
 define('COPYRIGHT','Game Horizon');
 
 require_once DIR_BASE.'vendor/autoload.php';
+\Controller\Session::Start();
 
 ini_set("display_errors", "off");
 error_reporting(E_ALL);

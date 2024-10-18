@@ -1,5 +1,6 @@
 @use '../abstracts' as *;
 @use "sass:color";
+@use 'sass:map';
 .nav-links {
   a {
     color: $text-color;
@@ -10,13 +11,27 @@
     }
   }
 }
-
 .user-menu {
   position: relative;
 
   .btn-user-menu {
-    @include button-style(transparent, $text-color);
-    padding: $spacing-xs $spacing-sm;
+    background: none;
+    border: none;
+    color: $text-color;
+    cursor: pointer;
+    font-size: $font-size-base;
+    display: flex;
+    align-items: center;
+    padding: map.get($spacing, xs) map.get($spacing, sm);
+    transition: background-color $transition-speed $transition-function;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+
+    i {
+      margin-right: map.get($spacing, xs);
+    }
   }
 
   .user-dropdown {
@@ -25,14 +40,26 @@
     right: 0;
     top: 100%;
     background-color: $secondary-color;
-    border-radius: $border-radius-md;
+    border-radius: map.get($border-radius, sm);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: $z-index-dropdown;
+    z-index: map.get($z-index, dropdown);
+    min-width: 200px;
+    padding: map.get($spacing, xs) 0;
+
+    li {
+      list-style: none;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba($text-color, 0.1);
+      }
+    }
 
     a {
-      display: block;
-      padding: $spacing-sm $spacing-md;
       color: $text-color;
+      padding: map.get($spacing, sm) map.get($spacing, md);
+      display: block;
+      text-decoration: none;
+      transition: background-color $transition-speed $transition-function;
 
       &:hover {
         background-color: $primary-color;
@@ -47,14 +74,14 @@
 
 .search-bar {
   display: flex;
-  margin: 0 $spacing-md;
+  margin: 0 map.get($spacing, md);
   flex-grow: 1;
   max-width: 400px;
 
   input {
-    padding: $spacing-xs $spacing-sm;
+    padding: map.get($spacing, xs) map.get($spacing, sm);
     border: none;
-    border-radius: $border-radius-full 0 0 $border-radius-full;
+    border-radius: map.get($border-radius, full) 0 0 map.get($border-radius, full);
     font-size: $font-size-base;
     width: 250px;
     background-color: color.scale($background-color, $lightness: 10%);
@@ -66,8 +93,8 @@
     background-color: $primary-color;
     color: $text-color;
     border: none;
-    padding: $spacing-xs $spacing-sm;
-    border-radius: 0 $border-radius-full $border-radius-full 0;
+    padding: map.get($spacing, xs) map.get($spacing, sm);
+    border-radius: 0 map.get($border-radius, full) map.get($border-radius, full) 0;
     cursor: pointer;
     transition: background-color $transition-speed $transition-function;
 
@@ -79,7 +106,7 @@
 
 .cart-icon {
   position: relative;
-  margin-right: $spacing-md;
+  margin-right: map.get($spacing, md);
   font-size: $font-size-large;
   color: $text-color;
   text-decoration: none;
@@ -100,7 +127,7 @@
 
 @media (max-width: 768px) {
   .search-bar {
-    margin: $spacing-xs 0;
+    margin: map.get($spacing, xs) 0;
     max-width: 100%;
   }
 
@@ -109,5 +136,39 @@
       right: 50%;
       transform: translateX(50%);
     }
+  }
+}
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+@include responsive(md) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo, .nav-links, .search-bar, .user-actions {
+    width: 100%;
+    margin: map.get($spacing, xs) 0;
+    justify-content: center;
+  }
+
+  .nav-links {
+    order: 2;
+  }
+
+  .search-bar {
+    order: 1;
+  }
+
+  .user-actions {
+    order: 3;
+    justify-content: center;
+  }
+
+  .btn-login, .btn-signup {
+    margin: 0 map.get($spacing, xxs);
   }
 }

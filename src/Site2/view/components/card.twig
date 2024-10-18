@@ -1,6 +1,6 @@
 <div class="game-card">
     <a href="{{ card_link }}">
-        <img src="{{ card_image }}" alt="{{ card_title }}">
+        <img src="{{ card_image }}" alt="{{ card_title }}" class="game-image">
         <div class="game-card-content">
             <h3>{{ card_title }}</h3>
             <p>{{ card_text|length > 100 ? card_text|slice(0, 100) ~ '...' : card_text }}</p>
@@ -8,6 +8,8 @@
         </div>
     </a>
     {% if button_basket %}
-        <button class="btn-green"><i class="fas fa-shopping-cart"></i> Ajouter au panier</button>
+        <button class="btn-green add-to-cart" data-game-id="{{ game_id }}">
+            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+        </button>
     {% endif %}
 </div>

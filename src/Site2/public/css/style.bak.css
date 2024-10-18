@@ -1,0 +1,618 @@
+:root {
+    --primary-color: #ff7700; /* Orange plus foncé */
+    --primary-light: #ff9933;
+    --primary-dark: #cc6000;
+    --secondary-color: #2a2a2a;
+    --text-color: #ffffff;
+    --background-color: #121212;
+    --card-background: #1e1e1e;
+    --hover-color: #ff8c1a;
+    --error-color: #ff4444;
+    --success-color: #00C851;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--secondary-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo a {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: var(--primary-light);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-right: 1.5rem;
+}
+
+/* Style global pour tous les liens */
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+.nav-links a, .user-actions a {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.nav-links a:hover, .user-actions a:hover {
+    color: var(--primary-color);
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    margin: 0 1rem;
+}
+
+.search-bar input {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    font-size: 1rem;
+    width: 250px;
+    background-color: #333;
+    color: var(--text-color);
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--primary-light);
+}
+
+/* User Actions Styles */
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    position: relative;
+    margin-right: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    min-width: 18px;
+    text-align: center;
+}
+
+.btn-login, .btn-signup, .btn-logout {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+}
+
+.btn-signup, .btn-logout {
+    background-color: var(--primary-color);
+}
+
+.btn-login:hover, .btn-signup:hover, .btn-logout:hover {
+    background-color: var(--primary-light);
+    color: var(--text-color);
+}
+
+/* Main Content Styles */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Game Grid Styles */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.game-card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(255,153,0,0.2);
+}
+
+.game-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover img {
+    transform: scale(1.05);
+}
+
+.game-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card h3 {
+    margin: 0 0 1rem 0;
+    color: var(--primary-color);
+}
+
+.game-card .price {
+    font-weight: bold;
+    color: var(--primary-light);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.btn-green {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.btn-green:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Form Styles */
+.form-container {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.form-container input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--text-color);
+}
+
+.form-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-container button:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.error {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 2rem 0;
+    margin-top: 3rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    margin-right: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav, .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links, .search-bar, .user-actions {
+        margin-top: 1rem;
+    }
+
+    .search-bar input {
+        width: 200px;
+    }
+
+    .footer-section {
+        margin-right: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Styles pour la page de détail du jeu */
+.game-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+    color: var(--primary-light);
+}
+
+.detail-card {
+    display: flex;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.game-image-container {
+    flex: 1;
+    max-width: 50%;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-info {
+    flex: 1;
+    padding: 2rem;
+}
+
+.game-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.game-description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-light);
+    margin-bottom: 1rem;
+}
+
+/* Responsive design pour la page de détail */
+@media (max-width: 768px) {
+    .detail-card {
+        flex-direction: column;
+    }
+
+    .game-image-container {
+        max-width: 100%;
+    }
+
+    .game-info {
+        padding: 1rem;
+    }
+}
+
+.cart-count.updated {
+    animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.cart-icon.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.add-to-cart.added {
+    background-color: var(--success-color);
+}
+
+.category-filter {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.btn-filter {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-filter.active, .btn-filter:hover {
+    background-color: var(--primary-color);
+}
+
+.pagination {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-page {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-page.active, .btn-page:hover {
+    background-color: var(--primary-color);
+}
+
+.user-menu {
+    position: relative;
+}
+
+.btn-user-menu {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-user-menu:hover {
+    background-color: var(--primary-color);
+}
+
+.btn-user-menu i {
+    margin-right: 0.5rem;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    min-width: 200px;
+    padding: 0.5rem 0;
+}
+
+.user-dropdown li {
+    list-style: none;
+}
+
+.user-dropdown a {
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-dropdown a:hover {
+    background-color: var(--primary-color);
+}
+
+.user-dropdown li:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.cart-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item .game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cart-total {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.btn-clear {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-remove {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}

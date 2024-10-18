@@ -1,0 +1,11 @@
+@use '../abstracts' as *;
+@use 'sass:map';
+.pagination {
+  margin-top: map.get($spacing, lg);
+  text-align: center;
+}
+
+.category-filter {
+  margin-bottom: map.get($spacing, lg);
+  text-align: center;
+}

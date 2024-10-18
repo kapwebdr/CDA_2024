@@ -1,16 +1,12 @@
 @use "sass:color";
-
 // Couleurs
 $primary-color: #ff7700;
-$primary-light: color.scale($primary-color, $lightness: 20%);
-$primary-dark: color.scale($primary-color, $lightness: -20%);
 $secondary-color: #2a2a2a;
 $text-color: #ffffff;
 $background-color: #121212;
 $card-background: #1e1e1e;
-$hover-color: color.adjust($primary-color, $lightness: 10%, $saturation: 10%);
 $error-color: #ff4444;
-$success-color: #00C851;
+$success-color: #7227fd;
 
 // Typographie
 $font-family: 'Roboto', sans-serif;
@@ -20,22 +16,25 @@ $font-size-large: 1.25rem;
 $line-height-base: 1.6;
 
 // Espacement
-$spacing-xxs: 0.25rem;
-$spacing-xs: 0.5rem;
-$spacing-sm: 0.75rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.5rem;
-$spacing-xl: 2rem;
-$spacing-xxl: 3rem;
+$spacing: (
+  xxs: 0.25rem,
+  xs: 0.5rem,
+  sm: 0.75rem,
+  md: 1rem,
+  lg: 1.5rem,
+  xl: 2rem,
+  xxl: 3rem
+);
 
 // Bordures
-$border-radius-sm: 3px;
-$border-radius-md: 5px;
-$border-radius-lg: 10px;
-$border-radius-full: 9999px;
+$border-radius: (
+  sm: 3px,
+  md: 5px,
+  lg: 10px,
+  full: 9999px
+);
 
 // Layout
-$header-height: 60px;
 $sidebar-width: 250px;
 $container-max-width: 1200px;
 
@@ -44,16 +43,20 @@ $transition-speed: 0.3s;
 $transition-function: ease;
 
 // Z-index
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
+$z-index: (
+  dropdown: 1000,
+  sticky: 1020,
+  fixed: 1030,
+  modal-backdrop: 1040,
+  modal: 1050,
+  popover: 1060,
+  tooltip: 1070
+);
 
-// Boutons
-$btn-padding-y: $spacing-xs;
-$btn-padding-x: $spacing-md;
-$btn-font-size: $font-size-base;
-$btn-border-radius: $border-radius-full;
+// Breakpoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);

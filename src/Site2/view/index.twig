@@ -8,17 +8,15 @@
         <h3>Jeux à la une</h3>
         <div class="game-grid">
             {% for game in featured_games %}
-                <div class="game-card">
-                    <img src="{{ game.image_url }}" alt="{{ game.title }}" class="game-image">
-                    <div class="game-card-content">
-                        <h3>{{ game.title }}</h3>
-                        <p>{{ game.description|length > 100 ? game.description|slice(0, 100) ~ '...' : game.description }}</p>
-                        <p class="price">{{ game.price }} €</p>
-                        <button class="btn-green add-to-cart" data-game-id="{{ game.id }}">
-                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                        </button>
-                    </div>
-                </div>
+                {% include 'components/card.twig' with {
+                    'card_link': "/game/#{game.id}",
+                    'card_title': game.title,
+                    'card_text': game.description,
+                    'card_image': game.image_url,
+                    'card_price': game.price,
+                    'button_basket': true,
+                    'game_id': game.id
+                } %}
             {% endfor %}
         </div>
     </div>

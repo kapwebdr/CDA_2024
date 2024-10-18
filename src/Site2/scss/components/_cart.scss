@@ -1,0 +1,24 @@
+@use '../abstracts' as *;
+@use 'sass:map';
+.cart-items {
+    @include game-grid;
+  }
+  
+  .cart-item {
+    @include game-card;
+  }
+.cart-total {
+  margin-top: map.get($spacing, lg);
+  font-size: $font-size-large;
+  font-weight: bold;
+  text-align: right;
+}
+
+.cart-actions {
+  @include flex(row, space-between);
+  margin-top: map.get($spacing, md);
+}
+
+.remove-form {
+  margin-top: map.get($spacing, sm);
+}

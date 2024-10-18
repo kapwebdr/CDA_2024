@@ -1,21 +1,18 @@
 @use '../abstracts' as *;
+@use 'sass:map';
 
 header {
   background-color: $secondary-color;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: $header-height;
-  z-index: $z-index-sticky;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  width: 100%;
+  z-index: map.get($z-index, sticky);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: map.get($spacing, xs);
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 $spacing-md;
+    padding: map.get($spacing, sm) map.get($spacing, md);
     max-width: $container-max-width;
     margin: 0 auto;
 
@@ -30,7 +27,7 @@ header {
       align-items: center;
 
       li {
-        margin-left: $spacing-md;
+        margin-left: map.get($spacing, md);
       }
     }
 
@@ -38,25 +35,84 @@ header {
       display: flex;
       align-items: center;
     }
+
+    .search-bar {
+      input {
+        border: 1px solid $primary-color;
+        border-right: none;
+      }
+      button {
+        border: 1px solid $primary-color;
+        border-left: none;
+      }
+    }
   }
 }
 
-@media (max-width: 768px) {
+@include responsive(lg) {
   header nav {
-    flex-wrap: wrap;
-    padding: $spacing-xs;
+    padding: 0 map.get($spacing, sm);
+  }
+}
 
-    .logo, .nav-links, .search-bar, .user-actions {
-      margin: $spacing-xs 0;
+@include responsive(md) {
+  header {
+    height: auto;
+    
+    nav {
+      flex-wrap: wrap;
+      padding: map.get($spacing, xs);
+
+      .logo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: map.get($spacing, sm);
+      }
+
+      .nav-links, .search-bar, .user-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-links, .search-bar, .user-actions {
+        margin: map.get($spacing, xxs) 0;
+      }
+
+      .search-bar {
+        input {
+          width: 70%;
+          height: 30px;
+          border: 1px solid $primary-color;
+          border-right: none;
+        }
+        button {
+          height: 30px;
+          padding: 0 map.get($spacing, xs);
+          border: 1px solid $primary-color;
+          border-left: none;
+        }
+      }
+
+      .user-actions {
+        .btn-login, .btn-signup {
+          padding: map.get($spacing, xxs) map.get($spacing, xs);
+          font-size: $font-size-small;
+        }
+      }
     }
+  }
+}
 
-    .nav-links, .search-bar, .user-actions {
-      width: 100%;
-      justify-content: center;
-    }
-
+@include responsive(sm) {
+  header nav {
     .search-bar input {
-      width: 100%;
+      width: 60%;
+    }
+    .user-actions {
+      flex-wrap: wrap;
+      .btn-login, .btn-signup {
+        margin-top: map.get($spacing, xxs);
+      }
     }
   }
 }

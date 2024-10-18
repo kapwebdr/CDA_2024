@@ -1,54 +1,34 @@
-@use "sass:color";
 @use '../abstracts' as *;
+@use 'sass:map';
+.game-grid {
+  @include game-grid;
+}
 
 .game-card {
-  @include card-style;
-  transition: transform $transition-speed $transition-function, box-shadow $transition-speed $transition-function;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .game-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: $border-radius-md $border-radius-md 0 0;
-  }
-
-  .game-card-content {
-    padding: $spacing-md;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  h3 {
-    margin: 0 0 $spacing-sm 0;
-    color: $primary-color;
-  }
-
-  p {
-    margin-bottom: $spacing-sm;
-  }
-
-  .price {
-    color: color.scale($primary-color, $lightness: 10%);
-    font-weight: bold;
-    font-size: $font-size-large;
-    margin-top: auto;
-  }
-
-  .btn-green {
-    align-self: center;
-    margin-top: $spacing-sm;
-  }
+  @include game-card;
 }
 
 a .game-card {
   color: $text-color;
   text-decoration: none;
+}
+
+@include responsive(sm) {
+  .game-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .game-card {
+    .game-image {
+      height: 150px;
+    }
+
+    h3 {
+      font-size: $font-size-base;
+    }
+
+    p {
+      font-size: $font-size-small;
+    }
+  }
 }

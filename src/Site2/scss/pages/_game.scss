@@ -1,9 +1,9 @@
 @use '../abstracts' as *;
-
+@use 'sass:map';
 .game-detail {
   @include card-style;
   display: flex;
-  margin-top: $spacing-xl;
+  margin-top: map.get($spacing, xl);
 
   .game-image-container {
     flex: 1;
@@ -12,22 +12,22 @@
     img {
       width: 100%;
       height: auto;
-      border-radius: $border-radius-md;
+      border-radius: map.get($border-radius, md);
     }
   }
 
   .game-info {
     flex: 1;
-    padding-left: $spacing-xl;
+    padding-left: map.get($spacing, xl);
 
     h2 {
-      margin-bottom: $spacing-md;
+      margin-bottom: map.get($spacing, md);
     }
 
     .price {
       font-size: $font-size-large;
       color: $primary-color;
-      margin-bottom: $spacing-md;
+      margin-bottom: map.get($spacing, md);
     }
 
     .btn-add-to-cart {

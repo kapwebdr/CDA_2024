@@ -1,35 +1,63 @@
 @use '../abstracts' as *;
+@use 'sass:map';
 
 footer {
   background-color: $secondary-color;
   color: $text-color;
-  padding: $spacing-xl 0;
-  margin-top: $spacing-xxl;
+  padding: map.get($spacing, xl) map.get($spacing, md);
 
   .footer-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    max-width: $container-max-width;
+    margin: 0 auto;
   }
 
   .footer-section {
     flex: 1;
-    margin-right: $spacing-xl;
-    margin-bottom: $spacing-lg;
+    margin-right: map.get($spacing, xl);
+    margin-bottom: map.get($spacing, lg);
 
     h3 {
-      margin-bottom: $spacing-md;
+      margin-bottom: map.get($spacing, md);
     }
 
     ul li {
-      margin-bottom: $spacing-xs;
+      margin-bottom: map.get($spacing, xs);
     }
   }
 
   .footer-bottom {
     text-align: center;
-    margin-top: $spacing-xl;
-    padding-top: $spacing-md;
+    margin-top: map.get($spacing, xl);
+    padding-top: map.get($spacing, md);
     border-top: 1px solid rgba($text-color, 0.1);
+  }
+}
+
+@include responsive(md) {
+  footer {
+    padding: map.get($spacing, lg) map.get($spacing, sm);
+
+    .footer-section {
+      flex-basis: 100%;
+      margin-right: 0;
+      margin-bottom: map.get($spacing, md);
+    }
+  }
+}
+
+@include responsive(sm) {
+  footer {
+    padding: map.get($spacing, md) map.get($spacing, xs);
+
+    .footer-content {
+      flex-direction: column;
+    }
+
+    .footer-section {
+      text-align: center;
+    }
   }
 }

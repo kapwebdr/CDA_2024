@@ -1,18 +1,72 @@
-@use "sass:color";
 @use 'variables' as *;
-
-@mixin flex-center {
+@use "sass:color";
+@use 'sass:map';
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: map.get($spacing, md);
+}
+
+@mixin game-card {
+  @include card-style;
+  @include flex(column);
+  height: 100%;
+
+  .game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: map.get($border-radius, md) map.get($border-radius, md) 0 0;
+  }
+
+  .game-card-content {
+    padding: map.get($spacing, md);
+    @include flex(column);
+    flex-grow: 1;
+  }
+
+  h3 {
+    margin: 0 0 map.get($spacing, sm) 0;
+    color: $primary-color;
+    font-size: $font-size-large;
+  }
+
+  p {
+    margin-bottom: map.get($spacing, sm);
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .price {
+    font-weight: bold;
+    font-size: $font-size-large;
+    margin-top: auto;
+    margin-bottom: map.get($spacing, sm);
+  }
+
+  .btn-green {
+    align-self: center;
+    width: 100%;
+  }
 }
 
 @mixin button-style($bg-color, $text-color: $text-color) {
   background-color: $bg-color;
   color: $text-color;
-  padding: $btn-padding-y $btn-padding-x;
-  border-radius: $btn-border-radius;
-  font-size: $btn-font-size;
+  padding: map.get($spacing, xs) map.get($spacing, md);
+  border-radius: map.get($border-radius, full);
+  font-size: $font-size-base;
   border: none;
   cursor: pointer;
   transition: background-color $transition-speed $transition-function;
@@ -24,7 +78,19 @@
 
 @mixin card-style {
   background-color: $card-background;
-  border-radius: $border-radius-md;
-  padding: $spacing-md;
+  border-radius: map.get($border-radius, md);
+  padding: map.get($spacing, md);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform $transition-speed $transition-function, box-shadow $transition-speed $transition-function;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
 }
