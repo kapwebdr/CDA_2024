@@ -1,28 +1,243 @@
 @use '../abstracts' as *;
 @use "sass:color";
 @use 'sass:map';
-.form-container {
-  @include card-style;
-  max-width: 400px;
-  margin: map.get($spacing, xl) auto; // Utilise map.get pour accéder à $spacing
 
-  input {
-    width: 100%;
-    padding: map.get($spacing, sm);
-    margin-bottom: map.get($spacing, md);
-    border: 1px solid $secondary-color;
-    border-radius: map.get($border-radius, sm);
-    background-color: color.adjust($background-color, $lightness: 5%);
-    color: $text-color;
-  }
+// Styles de base pour les éléments de formulaire
+%form-element-base {
+  width: 100%;
+  padding: map.get($spacing, sm);
+  margin-bottom: map.get($spacing, md);
+  border: 1px solid $secondary-color;
+  border-radius: map.get($border-radius, sm);
+  background-color: color.adjust($background-color, $lightness: 5%);
+  color: $text-color;
+  font-size: $font-size-base;
+  transition: border-color $transition-speed $transition-function, box-shadow $transition-speed $transition-function;
 
-  button {
-    @include button-style($primary-color);
-    width: 100%;
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
   }
 }
 
+// Input
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="tel"] {
+  @extend %form-element-base;
+}
+
+// Textarea
+textarea {
+  @extend %form-element-base;
+  min-height: 100px;
+  resize: vertical;
+}
+
+// Select
+select {
+  @extend %form-element-base;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right map.get($spacing, sm) center;
+  padding-right: map.get($spacing, xl);
+}
+
+// Checkbox et Radio
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: map.get($spacing, sm);
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: map.get($spacing, xs);
+    cursor: pointer;
+  }
+
+  label {
+    cursor: pointer;
+  }
+}
+
+// File input
+input[type="file"] {
+  @extend %form-element-base;
+  padding: map.get($spacing, xs) map.get($spacing, sm);
+  cursor: pointer;
+
+  &::file-selector-button {
+    padding: map.get($spacing, xs) map.get($spacing, sm);
+    background-color: $primary-color;
+    color: $text-color;
+    border: none;
+    border-radius: map.get($border-radius, sm);
+    cursor: pointer;
+    transition: background-color $transition-speed $transition-function;
+
+    &:hover {
+      background-color: color.scale($primary-color, $lightness: 10%);
+    }
+  }
+}
+
+// Form container
+.form-container {
+  @include card-style;
+  max-width: 500px;
+  margin: map.get($spacing, xl) auto;
+
+  h2 {
+    margin-bottom: map.get($spacing, lg);
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: map.get($spacing, md);
+  }
+
+  label {
+    display: block;
+    margin-bottom: map.get($spacing, xs);
+    font-weight: bold;
+  }
+
+  button[type="submit"] {
+    @include button-style($primary-color);
+    width: 100%;
+    margin-top: map.get($spacing, md);
+  }
+}
+
+// Messages
 .error-message, .error {
   color: $error-color;
   margin-bottom: map.get($spacing, md);
+}
+
+.success-message {
+  background-color: $success-color;
+  color: $text-color;
+  padding: map.get($spacing, sm);
+  border-radius: map.get($border-radius, sm);
+  margin-bottom: map.get($spacing, md);
+}
+
+.search-form {
+  display: flex;
+  align-items: stretch;
+
+  input[type="search"] {
+    flex-grow: 1;
+    padding: map.get($spacing, xs) map.get($spacing, sm);
+    border: 1px solid $primary-color;
+    border-right: none;
+    border-radius: map.get($border-radius, full) 0 0 map.get($border-radius, full);
+    font-size: $font-size-base;
+    background-color: color.scale($background-color, $lightness: 10%);
+    color: $text-color;
+    height: 40px; // Définir une hauteur fixe
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+
+  button[type="submit"] {
+    padding: 0 map.get($spacing, sm);
+    background-color: $primary-color;
+    color: $text-color;
+    border: 1px solid $primary-color;
+    border-left: none;
+    border-radius: 0 map.get($border-radius, full) map.get($border-radius, full) 0;
+    cursor: pointer;
+    transition: background-color $transition-speed $transition-function;
+    height: 40px; // Même hauteur que l'input
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: color.scale($primary-color, $lightness: 10%);
+    }
+
+    i {
+      font-size: 1rem; // Ajustez cette valeur si nécessaire
+    }
+  }
+}
+
+// Input range
+input[type="range"] {
+  @extend %form-element-base;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: map.get($border-radius, full);
+  background: $secondary-color;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  // Le curseur
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: color.scale($primary-color, $lightness: 10%);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: color.scale($primary-color, $lightness: 10%);
+    }
+  }
+
+  // La piste
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: $secondary-color;
+    border-radius: map.get($border-radius, full);
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: $secondary-color;
+    border-radius: map.get($border-radius, full);
+  }
+
+  &:focus {
+    &::-webkit-slider-thumb {
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
+    &::-moz-range-thumb {
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
+  }
 }

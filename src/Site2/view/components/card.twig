@@ -1,13 +1,29 @@
 <div class="game-card">
     <a href="{{ card_link }}">
         <img src="{{ card_image }}" alt="{{ card_title }}" class="game-image">
+        <span class="badge price-badge">
+            {% if game.is_on_promotion %}
+                <span class="original-price">{{ game.price }} €</span>
+                {{ game.promotion_price }} €
+            {% else %}
+                {{ game.price }} €
+            {% endif %}
+        </span>
+        {% if game.is_on_promotion %}
+            <span class="badge promo-badge">Promo</span>
+        {% endif %}
+        {% if game.is_online %}
+            <span class="badge online-badge">En ligne</span>
+        {% endif %}
+        {% if game.availability_date > "now"|date("Y-m-d") %}
+            <span class="badge coming-soon-badge">Bientôt disponible</span>
+        {% endif %}
         <div class="game-card-content">
             <h3>{{ card_title }}</h3>
-            <p>{{ card_text|length > 100 ? card_text|slice(0, 100) ~ '...' : card_text }}</p>
-            <p class="price">{{ card_price }} €</p>
+            <p class="game-description">{{ card_text }}</p>
         </div>
     </a>
-    {% if button_basket %}
+    {% if button_basket and game.availability_date <= "now"|date("Y-m-d") %}
         <button class="btn-green add-to-cart" data-game-id="{{ game_id }}">
             <i class="fas fa-shopping-cart"></i> Ajouter au panier
         </button>

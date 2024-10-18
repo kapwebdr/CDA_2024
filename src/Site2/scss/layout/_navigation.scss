@@ -1,6 +1,7 @@
 @use '../abstracts' as *;
 @use "sass:color";
 @use 'sass:map';
+
 .nav-links {
   a {
     color: $text-color;
@@ -11,6 +12,7 @@
     }
   }
 }
+
 .user-menu {
   position: relative;
 
@@ -72,38 +74,6 @@
   }
 }
 
-.search-bar {
-  display: flex;
-  margin: 0 map.get($spacing, md);
-  flex-grow: 1;
-  max-width: 400px;
-
-  input {
-    padding: map.get($spacing, xs) map.get($spacing, sm);
-    border: none;
-    border-radius: map.get($border-radius, full) 0 0 map.get($border-radius, full);
-    font-size: $font-size-base;
-    width: 250px;
-    background-color: color.scale($background-color, $lightness: 10%);
-    color: $text-color;
-    flex-grow: 1;
-  }
-
-  button {
-    background-color: $primary-color;
-    color: $text-color;
-    border: none;
-    padding: map.get($spacing, xs) map.get($spacing, sm);
-    border-radius: 0 map.get($border-radius, full) map.get($border-radius, full) 0;
-    cursor: pointer;
-    transition: background-color $transition-speed $transition-function;
-
-    &:hover {
-      background-color: color.scale($primary-color, $lightness: 10%);
-    }
-  }
-}
-
 .cart-icon {
   position: relative;
   margin-right: map.get($spacing, md);
@@ -125,22 +95,14 @@
   }
 }
 
-@media (max-width: 768px) {
-  .search-bar {
-    margin: map.get($spacing, xs) 0;
-    max-width: 100%;
-  }
-
-  .user-menu {
-    .user-dropdown {
-      right: 50%;
-      transform: translateX(50%);
-    }
-  }
-}
 .user-actions {
   display: flex;
   align-items: center;
+}
+
+.search-form {
+  margin: 0 map.get($spacing, md);
+  // Ajoutez ici d'autres styles spécifiques à la mise en page si nécessaire
 }
 
 @include responsive(md) {
@@ -149,7 +111,7 @@
     justify-content: center;
   }
 
-  .logo, .nav-links, .search-bar, .user-actions {
+  .logo, .nav-links, .search-form, .user-actions {
     width: 100%;
     margin: map.get($spacing, xs) 0;
     justify-content: center;
@@ -159,7 +121,7 @@
     order: 2;
   }
 
-  .search-bar {
+  .search-form {
     order: 1;
   }
 
@@ -170,5 +132,12 @@
 
   .btn-login, .btn-signup {
     margin: 0 map.get($spacing, xxs);
+  }
+
+  .user-menu {
+    .user-dropdown {
+      right: 50%;
+      transform: translateX(50%);
+    }
   }
 }

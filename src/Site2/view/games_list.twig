@@ -1,0 +1,33 @@
+{% if games|length > 0 %}
+    <div class="game-grid">
+    {% for game in games %}
+        {% include 'components/card.twig' with {
+            'card_link': "/game/#{game.id}",
+            'card_title': game.title,
+            'card_text': game.description,
+            'card_image': game.image_url,
+            'card_price': game.price,
+            'button_basket': true,
+            'game_id': game.id
+        } %}
+    {% endfor %}
+    </div>
+
+    {% if totalPages > 1 %}
+        <div class="pagination">
+            {% if currentPage > 1 %}
+                <a href="#" class="btn-page" data-page="{{ currentPage - 1 }}">Précédent</a>
+            {% endif %}
+            
+            {% for i in 1..totalPages %}
+                <a href="#" class="btn-page {% if currentPage == i %}active{% endif %}" data-page="{{ i }}">{{ i }}</a>
+            {% endfor %}
+            
+            {% if currentPage < totalPages %}
+                <a href="#" class="btn-page" data-page="{{ currentPage + 1 }}">Suivant</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% else %}
+    <p>Aucun jeu trouvé avec les filtres sélectionnés.</p>
+{% endif %}

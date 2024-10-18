@@ -10,10 +10,13 @@ body {
   @include flex(column);
   min-height: 100vh;
 }
+
 main {
+  width: 100%;
   max-width: 1200px;
-  margin: auto;
-  padding: 0 2rem;
+  margin: 0 auto;
+  padding: 0 map.get($spacing, md);
+  box-sizing: border-box;
 }
 
 .container {
@@ -24,7 +27,7 @@ main {
 
 .main-content {
   flex: 1;
-  padding: map.get($spacing, xl) map.get($spacing, md);
+  //padding: map.get($spacing, xl) 0;
   background-color: $background-color;
   border-radius: map.get($border-radius, lg);
   transition: margin-left $transition-speed;
@@ -46,17 +49,22 @@ main {
 
   .main-content {
     margin-left: 0;
-    padding: map.get($spacing, md);
+    // padding: map.get($spacing, md) 0;
   }
 
   .game-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
+
   body {
     font-size: $font-size-small;
   }
 
+  // main {
+  //   padding: map.get($spacing, sm) map.get($spacing, sm);
+  // }
+
   .container {
-    padding: 0 map.get($spacing, sm);
+    padding: 0;
   }
 }

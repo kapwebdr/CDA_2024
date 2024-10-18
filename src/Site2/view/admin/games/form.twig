@@ -1,0 +1,68 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="admin-container">
+        {% include 'admin/menu.twig' with {'current_page': 'games'} %}
+        
+        <div class="admin-content">
+            <h1>{{ item ? 'Modifier' : 'Ajouter' }} un jeu</h1>
+            <form method="post" class="admin-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="title" value="{{ item.title|default('') }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required>{{ item.description|default('') }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Prix</label>
+                    <input type="number" id="price" name="price" step="0.01" value="{{ item.price|default('') }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    {% if item and item.image_url %}
+                        <img src="{{ item.image_url }}" alt="Image actuelle" style="max-width: 200px; margin-top: 10px;">
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="release_date">Date de sortie</label>
+                    <input type="date" id="release_date" name="release_date" value="{{ item.release_date|default('') }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="editor_id">Éditeur</label>
+                    <select id="editor_id" name="editor_id" required>
+                        <option value="">Sélectionnez un éditeur</option>
+                        {% for editor in editors %}
+                            <option value="{{ editor.id }}" {{ item and item.editor_id == editor.id ? 'selected' : '' }}>
+                                {{ editor.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="is_online" {{ item and item.is_online ? 'checked' : '' }}>
+                        En ligne
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="availability_date">Date de disponibilité</label>
+                    <input type="date" id="availability_date" name="availability_date" value="{{ item.availability_date|default('') }}" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="is_on_promotion" {{ item and item.is_on_promotion ? 'checked' : '' }}>
+                        En promotion
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="promotion_price">Prix promotionnel</label>
+                    <input type="number" id="promotion_price" name="promotion_price" step="0.01" value="{{ item.promotion_price|default('') }}">
+                </div>
+                <button type="submit" class="btn btn-primary">{{ item ? 'Modifier' : 'Ajouter' }}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

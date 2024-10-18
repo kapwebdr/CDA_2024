@@ -1,9 +1,9 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-    <div class="game-detail">
-        <a href="/games" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au catalogue</a>
+    <a href="/games" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au catalogue</a>
 
+    <div class="game-detail">
         {% if game %}    
             <div class="game-card detail-card">
                 <div class="game-image-container">
@@ -21,7 +21,6 @@
         {% else %}
             <div class="error-message">
                 <p>Jeu non trouvé</p>
-                <a href="/games" class="btn-green">Voir tous les jeux</a>
             </div>
         {% endif %}
     </div>

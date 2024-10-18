@@ -1,0 +1,29 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    
+    <div class="admin-container">
+        {% include 'admin/menu.twig' with {'current_page': 'users'} %}
+        
+        <div class="admin-content">
+    
+    <h1>{{ item ? 'Modifier' : 'Ajouter' }} un utilisateur</h1>
+    <form method="post" class="admin-form">
+        <div class="form-group">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" value="{{ item.username|default('') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ item.email|default('') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe {{ item ? '(laisser vide pour ne pas changer)' : '' }}</label>
+            <input type="password" id="password" name="password" {{ item ? '' : 'required' }}>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ item ? 'Modifier' : 'Ajouter' }}</button>
+    </form>
+    </div>
+    </div>
+    
+{% endblock %}

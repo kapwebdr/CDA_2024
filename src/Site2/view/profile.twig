@@ -1,0 +1,44 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Mon profil</h2>
+        {% if success %}
+            <div class="success-message">{{ success }}</div>
+        {% endif %}
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="birthdate">Date de naissance</label>
+                <input type="date" id="birthdate" name="birthdate" value="{{ user.birthdate }}">
+            </div>
+            <div class="form-group">
+                <label for="address">Adresse</label>
+                <input type="text" id="address" name="address" value="{{ user.address }}">
+            </div>
+            <div class="form-group">
+                <label for="address2">Complément d'adresse (optionnel)</label>
+                <input type="text" id="address2" name="address2" value="{{ user.address2 }}">
+            </div>
+            <div class="form-group">
+                <label for="postal_code">Code postal</label>
+                <input type="text" id="postal_code" name="postal_code" value="{{ user.postal_code }}">
+            </div>
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <input type="text" id="city" name="city" value="{{ user.city }}">
+            </div>
+            <div class="form-group">
+                <label for="country">Pays</label>
+                <input type="text" id="country" name="country" value="{{ user.country }}">
+            </div>
+            <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*">
+            </div>
+            <button type="submit">Mettre à jour le profil</button>
+        </form>
+    </div>
+{% endblock %}

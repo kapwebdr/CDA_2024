@@ -1,6 +1,7 @@
 @use '../abstracts' as *;
 @use 'sass:map';
 @use "sass:color";
+
 .btn {
   @include button-style($primary-color);
 }
@@ -13,8 +14,36 @@
   @include button-style($success-color);
 }
 
+.btn-info {
+  @include button-style($info-color);
+}
+
+.btn-warning {
+  @include button-style($warning-color);
+}
+
 .btn-error {
   @include button-style($error-color);
+}
+
+.btn-accent-1 {
+  @include button-style($accent-color-1);
+}
+
+.btn-accent-2 {
+  @include button-style($accent-color-2);
+}
+
+.btn-accent-3 {
+  @include button-style($accent-color-3);
+}
+
+.btn-accent-4 {
+  @include button-style($accent-color-4);
+}
+
+.btn-accent-5 {
+  @include button-style($accent-color-5);
 }
 
 .btn-large {
@@ -81,7 +110,24 @@
 .btn-signup {
   @include button-style($primary-color);
 }
+.btn-toggle {
+  background-color: $secondary-color;
+  color: $text-color;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: map.get($border-radius,sm);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
+  &.active {
+      background-color: $primary-color;
+  }
+
+  i {
+      margin-right: 0.5rem;
+  }
+}
 @include responsive(md) {
   .btn, .btn-green, .btn-blue {
     width: 100%;

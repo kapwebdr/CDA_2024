@@ -1,0 +1,163 @@
+@use '../abstracts' as *;
+
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: map-get($spacing, lg);
+
+    th, td {
+        padding: map-get($spacing, sm);
+        border: 1px solid $secondary-color;
+    }
+
+    th {
+        background-color: $secondary-color;
+        color: $text-color;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgba($secondary-color, 0.1);
+    }
+}
+
+.admin-actions {
+    display: flex;
+    gap: map-get($spacing, sm);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+
+    &.success {
+        background-color: #4CAF50;
+    }
+
+    &.error {
+        background-color: #f44336;
+    }
+}
+
+.admin-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.admin-menu {
+    width: 200px;
+    flex-shrink: 0;
+    background-color: $secondary-color;
+    padding: map-get($spacing, xs);
+    border-radius: map-get($border-radius, md);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: map-get($spacing, xs);
+
+            a {
+                display: block;
+                color: $text-color;
+                text-decoration: none;
+                padding: map-get($spacing, sm) map-get($spacing, md);
+                border-radius: map-get($border-radius, sm);
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+                i {
+                    margin-right: map-get($spacing, xs);
+                    width: 20px;
+                    text-align: center;
+                }
+
+                &:hover, &.active {
+                    background-color: $primary-color;
+                    color: $text-color;
+                }
+            }
+        }
+    }
+}
+
+.admin-content {
+    flex: 1;
+    padding: map-get($spacing, md);
+    min-width: 0; // Pour éviter le débordement sur les petits écrans
+}
+
+
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+
+    .admin-menu {
+        width: 100%;
+        margin-bottom: map-get($spacing, md);
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            li {
+                flex: 1 1 auto;
+                margin-bottom: map-get($spacing, xs);
+
+                a {
+                    text-align: center;
+
+                    i {
+                        margin-right: 0;
+                    }
+
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.admin-form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .form-group {
+        margin-bottom: map-get($spacing, md);
+    }
+
+    label {
+        display: block;
+        margin-bottom: map-get($spacing, xs);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: map-get($spacing, sm);
+        border: 1px solid $secondary-color;
+        border-radius: map-get($border-radius, sm);
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        margin-top: map-get($spacing, md);
+    }
+}

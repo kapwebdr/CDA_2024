@@ -1,0 +1,56 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="admin-container">
+        {% include 'admin/menu.twig' with {'current_page': 'games'} %}
+        
+        <div class="admin-content">
+    <h1>Gestion des jeux</h1>
+    <a href="/admin/games/create" class="btn btn-primary">Ajouter un jeu</a>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Éditeur</th>
+                <th>Date de sortie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.price }} €</td>
+                    <td>{{ item.editor_name }}</td>
+                    <td>{{ item.release_date }}</td>
+                    <td>
+                        <a href="/admin/games/edit/{{ item.id }}" class="btn btn-sm btn-secondary">Modifier</a>
+                        <a href="/admin/games/delete/{{ item.id }}" class="btn btn-sm btn-danger delete-btn" data-item-name="{{ item.title }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% if totalPages > 1 %}
+        <div class="pagination">
+            {% if currentPage > 1 %}
+                <a href="?page={{ currentPage - 1 }}" class="btn-page">Précédent</a>
+            {% endif %}
+            
+            {% for i in 1..totalPages %}
+                <a href="?page={{ i }}" class="btn-page {% if currentPage == i %}active{% endif %}">{{ i }}</a>
+            {% endfor %}
+            
+            {% if currentPage < totalPages %}
+                <a href="?page={{ currentPage + 1 }}" class="btn-page">Suivant</a>
+            {% endif %}
+        </div>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}

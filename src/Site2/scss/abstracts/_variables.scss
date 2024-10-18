@@ -1,12 +1,22 @@
 @use "sass:color";
-// Couleurs
+// Couleurs principales
 $primary-color: #ff7700;
 $secondary-color: #2a2a2a;
+$accent-color-1: #00a86b; // Vert
+$accent-color-2: #0077be; // Bleu
+$accent-color-3: #ffd700; // Jaune
+$accent-color-4: #dc143c; // Rouge cramoisi
+$accent-color-5: #9932cc; // Violet foncé
+
 $text-color: #ffffff;
 $background-color: #121212;
 $card-background: #1e1e1e;
-$error-color: #ff4444;
-$success-color: #7227fd;
+
+// Couleurs sémantiques
+$success-color: $accent-color-1;
+$info-color: $accent-color-2;
+$warning-color: $accent-color-3;
+$error-color: $accent-color-4;
 
 // Typographie
 $font-family: 'Roboto', sans-serif;

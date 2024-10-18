@@ -11,22 +11,22 @@ class User extends Main
             $password = $_POST['password'] ?? '';
 
             $userModel = new \Model\User();
-            $userId = $userModel->createUser($username, $email, $password);
-
-            if ($userId) {
+            try {
+                $userId = $userModel->create($username, $email, $password);
                 // Ajouter le profil 'User' par défaut
                 $userModel->addUserProfile($userId, 3); // 3 est l'ID du profil 'User'
-                $_SESSION['user_id'] = $userId;
-                $_SESSION['username'] = $username;
+                Session::Set('user_id', $userId);
+                self::$User = $userModel->getUserById($userId);
+                self::$View->user = self::$User;
                 header('Location: /');
                 exit;
-            } else {
-                Main::$View->error = "Erreur lors de l'inscription.";
+            } catch (\PDOException $e) {
+                self::$View->error = "Erreur lors de l'inscription. Veuillez réessayer.";
             }
         }
 
-        Main::$View->title = "Inscription";
-        Main::$View->Display('register');
+        self::$View->title = "Inscription";
+        self::$View->Display('register');
     }
 
     public function login()
@@ -38,10 +38,15 @@ class User extends Main
             $userModel = new \Model\User();
             $user = $userModel->getUserByUsername($username);
 
-            if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                header('Location: /');
+            if ($user && $userModel->verifyPassword($password, $user['password'])) {
+                Session::Set('user_id', $user['id']);
+                self::$User = $user;
+                self::$View->user = $user;
+                
+                $redirectUrl = Session::Get('redirect_after_login', '/');
+                Session::Delete('redirect_after_login');
+                
+                header('Location: ' . $redirectUrl);
                 exit;
             } else {
                 self::$View->error = "Nom d'utilisateur ou mot de passe incorrect.";
@@ -54,7 +59,9 @@ class User extends Main
 
     public function logout()
     {
-        session_destroy();
+        Session::Destroy();
+        self::$User = null;
+        self::$View->user = null;
         header('Location: /');
         exit;
     }

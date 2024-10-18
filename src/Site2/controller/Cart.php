@@ -5,7 +5,7 @@ class Cart extends Main
 {
     public function viewCart()
     {
-        self::$View->cart = $_SESSION['cart'] ?? [];
+        self::$View->cart = Session::Get('cart', []);
         self::$View->title = 'Panier';
         self::$View->Display('cart');
     }
@@ -20,17 +20,16 @@ class Cart extends Main
                 $gameModel = new \Model\Game();
                 $game = $gameModel->getGame($gameId);
                 if ($game) {
-                    if (!isset($_SESSION['cart'])) {
-                        $_SESSION['cart'] = [];
-                    }
-                    if (isset($_SESSION['cart'][$gameId])) {
-                        $_SESSION['cart'][$gameId]['quantity']++;
+                    $cart = Session::Get('cart', []);
+                    if (isset($cart[$gameId])) {
+                        $cart[$gameId]['quantity']++;
                     } else {
-                        $_SESSION['cart'][$gameId] = [
+                        $cart[$gameId] = [
                             'game' => $game,
                             'quantity' => 1
                         ];
                     }
+                    Session::Set('cart', $cart);
                     $response['success'] = true;
                     $response['cartCount'] = self::getCartItemCount();
                 }
@@ -46,8 +45,10 @@ class Cart extends Main
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $gameId = $_POST['game_id'] ?? null;
-            if ($gameId && isset($_SESSION['cart'][$gameId])) {
-                unset($_SESSION['cart'][$gameId]);
+            $cart = Session::Get('cart', []);
+            if ($gameId && isset($cart[$gameId])) {
+                unset($cart[$gameId]);
+                Session::Set('cart', $cart);
             }
         }
         header('Location: /cart');
@@ -55,14 +56,14 @@ class Cart extends Main
 
     public function clearCart()
     {
-        $_SESSION['cart'] = [];
+        Session::Set('cart', []);
         header('Location: /cart');
     }
 
     public function checkout()
     {
-        if (!isset($_SESSION['user_id'])) {
-            $_SESSION['redirect_after_login'] = '/cart/checkout';
+        if (!Session::Exists('user_id')) {
+            Session::Set('redirect_after_login', '/cart/checkout');
             header('Location: /login');
             exit;
         }
@@ -70,7 +71,7 @@ class Cart extends Main
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Ici, vous pouvez ajouter la logique pour finaliser la commande
             // Par exemple, enregistrer la commande dans la base de données
-            $_SESSION['cart'] = [];
+            Session::Set('cart', []);
             Main::$View->message = 'Votre commande a été validée avec succès !';
         }
 
@@ -81,10 +82,9 @@ class Cart extends Main
     public static function getCartItemCount()
     {
         $count = 0;
-        if (isset($_SESSION['cart'])) {
-            foreach ($_SESSION['cart'] as $item) {
-                $count += $item['quantity'];
-            }
+        $cart = Session::Get('cart', []);
+        foreach ($cart as $item) {
+            $count += $item['quantity'];
         }
         return $count;
     }

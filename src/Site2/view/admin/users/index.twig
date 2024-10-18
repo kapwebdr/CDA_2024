@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="admin-container">
+        {% include 'admin/menu.twig' with {'current_page': 'users'} %}
+        
+        <div class="admin-content">
+    <h1>Gestion des utilisateurs</h1>
+    <a href="/admin/users/create" class="btn btn-primary">Ajouter un utilisateur</a>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>
+                        <a href="/admin/users/edit/{{ item.id }}" class="btn btn-sm btn-secondary">Modifier</a>
+                        <a href="/admin/users/delete/{{ item.id }}" class="btn btn-sm btn-danger delete-btn" data-item-name="{{ item.username }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% if totalPages > 1 %}
+        <div class="pagination">
+            {% if currentPage > 1 %}
+                <a href="?page={{ currentPage - 1 }}" class="btn-page">Précédent</a>
+            {% endif %}
+            
+            {% for i in 1..totalPages %}
+                <a href="?page={{ i }}" class="btn-page {% if currentPage == i %}active{% endif %}">{{ i }}</a>
+            {% endfor %}
+            
+            {% if currentPage < totalPages %}
+                <a href="?page={{ currentPage + 1 }}" class="btn-page">Suivant</a>
+            {% endif %}
+        </div>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}

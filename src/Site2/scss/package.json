@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass ./main.scss ../public/css/style.css",
-    "sass:watch": "sass --watch ./main.scss ../public/css/style.css"
+    "sass:watch": "sass --watch ./main.scss ../public/css/style.css",
+    "sass:watchAdmin": "sass --watch ./admin.scss ../public/css/admin.css"
   },
   "keywords": [],
   "author": "",

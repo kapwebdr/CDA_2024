@@ -1,10 +1,20 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-    <div class="error-container">
+    <div class="error-container card">
+        <div class="error-icon">&#9888;</div>
         <h2>{{ errorType }}</h2>
-        <p>Code d'erreur : {{ errorCode }}</p>
-        <p>{{ errorMessage }}</p>
-        <a href="/" class="btn-blue">Retour à l'accueil</a>
+        <div class="error-code">Code d'erreur : {{ errorCode }}</div>
+        <div class="error-message">
+            <p>{{ errorMessage }}</p>
+        </div>
+        <div class="error-actions">
+            <a href="/" class="btn-green">Retour à l'accueil</a>
+            <button onclick="window.history.back()" class="btn-blue">Page précédente</button>
+        </div>
     </div>
+{% endblock %}
+
+{% block sidebar %}
+    {# Désactiver la sidebar pour la page d'erreur #}
 {% endblock %}

@@ -1,0 +1,50 @@
+@use '../abstracts' as *;
+@use "sass:color";
+@use 'sass:map';
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: map.get($spacing, md);
+    margin-bottom: map.get($spacing, lg);
+    padding: map.get($spacing, md);
+    background-color: color.scale($card-background, $lightness: 5%);
+    border-radius: map.get($border-radius,md);
+
+    @include responsive(sm) {
+        flex-direction: column;
+    }
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+
+    @include responsive(sm) {
+        width: 100%;
+    }
+
+    label {
+        display: block;
+        margin-bottom: map.get($spacing, xs);
+        font-weight: bold;
+    }
+}
+
+.filter-select, #price-range {
+    width: 100%;
+    padding: map.get($spacing, xs) map.get($spacing, sm);
+    border: 1px solid $secondary-color;
+    border-radius: map.get($border-radius,sm);
+    background-color: $card-background;
+    color: $text-color;
+    font-size: $font-size-base;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+    }
+}
+
+#price-range {
+    margin-top: map.get($spacing, xs);
+}

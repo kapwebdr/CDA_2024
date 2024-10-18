@@ -6,6 +6,9 @@
     <title>{{ title }} - Game Horizon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css"/>
+    {% if is_admin_page is defined and is_admin_page %}
+        <link rel="stylesheet" href="/css/admin.css"/>
+    {% endif %}
 </head>
 <body>
     <header>
@@ -18,8 +21,8 @@
                     <li><a href="{{ item.url }}">{{ item.name }}</a></li>
                 {% endfor %}
             </ul>
-            <form action="/search" method="GET" class="search-bar">
-                <input type="text" name="q" placeholder="Rechercher un jeu...">
+            <form action="/search" method="GET" class="search-form">
+                <input type="search" name="q" placeholder="Rechercher un jeu...">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
             <div class="user-actions">
@@ -29,7 +32,7 @@
                         <span class="cart-count">{{ cartCount }}</span>
                     {% endif %}
                 </a>
-                {% if user.id %}
+                {% if user %}
                     <div class="user-menu">
                         <button class="btn-user-menu">
                             <i class="fas fa-user"></i> {{ user.username }}
@@ -38,6 +41,9 @@
                             <li><a href="/account"><i class="fas fa-user-circle"></i> Mon compte</a></li>
                             <li><a href="/profile"><i class="fas fa-id-card"></i> Mon profil</a></li>
                             <li><a href="/orders"><i class="fas fa-shopping-bag"></i> Mes commandes</a></li>
+                            {% if 'Administrateur' in user.profiles %}
+                                <li><a href="/admin"><i class="fas fa-cogs"></i> Administration</a></li>
+                            {% endif %}
                             <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                         </ul>
                     </div>
@@ -85,5 +91,9 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    {% if is_admin_page is defined and is_admin_page %}
+        <script src="/js/admin.js"></script>
+    {% endif %}
+    {% block javascripts %}{% endblock %}
 </body>
 </html>

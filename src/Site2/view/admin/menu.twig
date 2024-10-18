@@ -1,0 +1,9 @@
+<nav class="admin-menu">
+    <ul>
+        <li><a href="/admin" class="{{ current_page == 'dashboard' ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> <span>Tableau de bord</span></a></li>
+        <li><a href="/admin/categories" class="{{ current_page == 'categories' ? 'active' : '' }}"><i class="fas fa-tags"></i> <span>Catégories</span></a></li>
+        <li><a href="/admin/users" class="{{ current_page == 'users' ? 'active' : '' }}"><i class="fas fa-users"></i> <span>Utilisateurs</span></a></li>
+        <li><a href="/admin/editors" class="{{ current_page == 'editors' ? 'active' : '' }}"><i class="fas fa-building"></i> <span>Éditeurs</span></a></li>
+        <li><a href="/admin/games" class="{{ current_page == 'games' ? 'active' : '' }}"><i class="fas fa-gamepad"></i> <span>Jeux</span></a></li>
+    </ul>
+</nav>

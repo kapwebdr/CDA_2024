@@ -3,43 +3,50 @@
 {% block content %}
     <h2>{{ h1_title }}</h2>
 
-    <div class="category-filter">
-        <a href="/games" class="btn-filter {% if not currentCategory %}active{% endif %}">Tous</a>
-        {% for category in categories %}
-            <a href="/games?category={{ category.id }}" class="btn-filter {% if currentCategory == category.id %}active{% endif %}">{{ category.name }}</a>
-        {% endfor %}
-    </div>
-
-    <div class="game-grid">
-    {% for game in games %}
-        <div class="game-card">
-            {% include 'components/card.twig' with {
-                'card_link': "/game/#{game.id}",
-                'card_title': game.title,
-                'card_text': game.description,
-                'card_image': game.image_url,
-                'card_price': game.price,
-                'button_basket': true,
-                'game_id': game.id
-            } %}
-           
+    <div class="filters">
+        <div class="filter-group">
+            <label for="category-select">Catégorie:</label>
+            <select id="category-select" class="filter-select">
+                <option value="">Toutes</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if currentCategory == category.id %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
         </div>
-    {% else %}
-        <p>Aucun jeu trouvé.</p>
-    {% endfor %}
+
+        <div class="filter-group">
+            <label for="editor-select">Éditeur:</label>
+            <select id="editor-select" class="filter-select">
+                <option value="">Tous</option>
+                {% for editor in editors %}
+                    <option value="{{ editor.id }}" {% if currentEditor == editor.id %}selected{% endif %}>{{ editor.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="price-range">Prix maximum: <span id="price-value"></span>€</label>
+            <input type="range" id="price-range" min="0" max="100" step="5" value="{{ maxPrice|default(100) }}">
+        </div>
+
+        <div class="filter-group toggle-filters">
+            <button id="online-filter" class="btn-toggle {% if isOnline %}active{% endif %}" data-filter="online">
+                <i class="fas fa-globe"></i> En ligne
+            </button>
+            <button id="available-filter" class="btn-toggle {% if isAvailable %}active{% endif %}" data-filter="available">
+                <i class="fas fa-check"></i> Disponible
+            </button>
+            <button id="promotion-filter" class="btn-toggle {% if isOnPromotion %}active{% endif %}" data-filter="promotion">
+                <i class="fas fa-percent"></i> En promo
+            </button>
+        </div>
     </div>
 
-    <div class="pagination">
-        {% if currentPage > 1 %}
-            <a href="/games?page={{ currentPage - 1 }}{% if currentCategory %}&category={{ currentCategory }}{% endif %}" class="btn-page">Précédent</a>
-        {% endif %}
-        
-        {% for i in 1..totalPages %}
-            <a href="/games?page={{ i }}{% if currentCategory %}&category={{ currentCategory }}{% endif %}" class="btn-page {% if currentPage == i %}active{% endif %}">{{ i }}</a>
-        {% endfor %}
-        
-        {% if currentPage < totalPages %}
-            <a href="/games?page={{ currentPage + 1 }}{% if currentCategory %}&category={{ currentCategory }}{% endif %}" class="btn-page">Suivant</a>
-        {% endif %}
+    <div id="games-container">
+        <!-- Le contenu sera chargé dynamiquement ici -->
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/filters.js"></script>
 {% endblock %}
