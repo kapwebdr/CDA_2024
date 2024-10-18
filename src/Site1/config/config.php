@@ -1,9 +1,36 @@
 <?php
+session_start();
+//session_set_cookie_params(56000);
+//echo session_id();
+//session_id($user['session_id']);
+
+/*
+$_POST
+$_GET
+$_SERVER
+$_SESSION 
+*/
+
+// var_dump($_SESSION);
+// $_SESSION['user'] = $user;
+// $_SESSION['cart'] = $cart;
+// unset($_SESSION['user']);
+// $_SESSION['user'] = [
+//     'username'=>'damien'
+// ];
+// $_SESSION['permission'] = [
+//     'guest'=>true,
+//     'editor'=>false,
+// ];
+// var_dump($_COOKIE);
+// session_destroy();
+
 define('DIR_BASE',__DIR__.'/../');
 define('DIR_CONFIG',DIR_BASE.'config/');
 define('DIR_CONTROLLER',DIR_BASE.'controller/');
 define('DIR_MODEL',DIR_BASE.'model/');
 define('DIR_VIEW',DIR_BASE.'view/');
+
 
 /* DB */
 define('DB_HOSTNAME','cda_db');
