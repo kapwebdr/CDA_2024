@@ -1,14 +1,12 @@
 <?php
 namespace Controller;
 use \Controller\Error;
-
 class User extends Main
 {
     public function getUsers($vars=[])
     {
         $users = new \Model\User();
         $_users = $users->getUsers();
-        
         Main::$View->title      = 'Liste des utilisateurs';
         Main::$View->h1_title   = 'Liste des utilisateurs';
         Main::$View->users      = $_users;

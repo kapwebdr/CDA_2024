@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 //session_set_cookie_params(56000);
 //echo session_id();
 //session_id($user['session_id']);
@@ -50,6 +50,8 @@ define('SMTP_DEBUG',true);
 define('COPYRIGHT','Kapweb');
 
 require_once DIR_BASE.'vendor/autoload.php';
+
+\Controller\Session::Start();
 
 ini_set( "display_errors" , "off" );
 error_reporting( E_ALL );
