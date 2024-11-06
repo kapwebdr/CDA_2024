@@ -1,0 +1,60 @@
+# docker build -t kapweb_php_fpm:0.0.1 . 
+services:
+  web:
+    image: nginx:latest
+    container_name: cda_nginx
+    # restart: always # unless-stopped | on-failure |  no
+    ports:
+      - "9000:80"
+      - "9001:81"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/:/etc/nginx/conf.d/
+    links:
+      - php 
+  db:
+    image: mariadb:latest
+    container_name: cda_db
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_pwd
+      - MARIADB_USER=cda_user
+      - MARIADB_PASSWORD=cda_pwd
+      - MARIADB_DATABASE=cda_db
+    volumes:
+      - ./db/:/var/lib/mysql/
+      #- ./dump/:/docker-entrypoint-initdb.d/
+  db2:
+    image: mariadb:latest
+    container_name: cda_db2
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_pwd
+      - MARIADB_USER=game_user
+      - MARIADB_PASSWORD=game_pwd
+      - MARIADB_DATABASE=game_horizon
+    volumes:
+      #- ./db/:/var/lib/mysql/
+      - ./dump/:/docker-entrypoint-initdb.d/
+  php:
+    build:
+      context: ./php/
+      dockerfile: Dockerfile
+    # image: kapweb_php_fpm:0.0.1
+    container_name: cda_php
+    volumes:
+      - ./src:/var/www/html/
+    tmpfs: /tmp
+    command: sh -c "cd Site1 && composer install --ignore-platform-reqs && php-fpm"
+    links:
+      - db 
+      - db2
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: cda_phpmyadmin
+    ports:
+      - 9002:80
+    environment:
+      PMA_HOSTS: db,db2
+    links:
+      - db
+      - db2

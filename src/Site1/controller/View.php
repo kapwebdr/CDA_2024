@@ -21,6 +21,18 @@ class View
                 self::$template_engine_object = new \Twig\Environment($loader, [
                 //    'cache' => '../view/cache/',
                 ]);
+                // {{ game.title|truncate(30) }}
+                $filter = new \Twig\TwigFilter('truncate', function ($string,$maxLength=10) {
+                    $length = strlen($string);
+                    return ($length > $maxLength)?substr(0,$maxLength,$string).' ...':$string;
+                });
+                self::$template_engine_object->addFilter($filter);
+                //
+                // $game = [];
+                // $length = strlen($game['title']);
+                // $game['title'] = ($length > 10)?substr(0,10,$game['title']).' ...':$game['title'];
+                // Main::$View->game = $game;
+
             break;
             case 'smarty':
                 self::$template_engine_object = new \Smarty\Smarty();

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaires d'upload</title>
+</head>
+<body>
+    <h2>Upload d'un seul fichier</h2>
+    <form action="traitement_upload.php" method="POST" enctype="multipart/form-data">
+        <!-- enctype est crucial pour l'upload de fichiers -->
+        <input type="file" name="fichier" required>
+        <button type="submit">Envoyer le fichier</button>
+    </form>
+
+    <h2>Upload de fichiers multiples</h2>
+    <form action="traitement_upload.php" method="POST" enctype="multipart/form-data">
+        <!-- Le multiple permet la sélection de plusieurs fichiers -->
+        <!-- Le [] dans le name permet de créer un tableau de fichiers -->
+        <input type="file" name="fichiers[]" multiple required>
+        <button type="submit">Envoyer les fichiers</button>
+    </form>
+</body>
+</html> 
