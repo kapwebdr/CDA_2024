@@ -1,0 +1,24 @@
+name: Deploy on Groupe4
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H groupe4.tatoula.eu >> ~/.ssh/known_hosts
+
+      - name: Deploy on Server
+        run: |
+          ssh -P 2223 groupe4@groupe4.tatoula.eu "cd /home/groupe4/CDA_2024/ && git pull origin main"
