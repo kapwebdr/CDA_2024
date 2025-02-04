@@ -17,8 +17,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 2223 -H groupe4.tatoula.eu >> ~/.ssh/known_hosts
+          ssh-keyscan -p 2223 groupe4.tatoula.eu >> ~/.ssh/known_hosts
 
       - name: Deploy on Server
         run: |
-          ssh -p 2223 groupe4@groupe4.tatoula.eu "cd /home/groupe4/CDA_2024/ && git pull origin main"
+          ssh -vvv -p 2223 groupe4@groupe4.tatoula.eu "cd /home/groupe4/CDA_2024/ && git pull origin main"
