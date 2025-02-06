@@ -22,3 +22,4 @@ jobs:
       - name: Deploy on Server
         run: |
           ssh -v -p 2223 groupe4@groupe4.tatoula.eu "cd /home/groupe4/CDA_2024/ && git pull origin main"
+          
